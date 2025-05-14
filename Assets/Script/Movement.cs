@@ -33,6 +33,22 @@ public class Movement : MonoBehaviour
         {
             Debug.LogWarning("AmmoManager component not found on player. Unlimited ammo will be used.");
         }
+        
+        // Verify components
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D not assigned to Movement script!");
+        }
+        
+        if (groundCheck == null)
+        {
+            Debug.LogError("Ground Check transform not assigned to Movement script!");
+        }
+        
+        if (animator == null)
+        {
+            Debug.LogWarning("Animator not assigned to Movement script!");
+        }
     }
 
     // Update is called once per frame
@@ -40,9 +56,15 @@ public class Movement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            bool grounded = IsGrounded();
+            Debug.Log("Jump pressed, grounded: " + grounded);
+            
+            if (grounded)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            }
         }
 
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
@@ -51,7 +73,10 @@ public class Movement : MonoBehaviour
         }
 
         isRunning = horizontal != 0;
-        animator.SetBool("Run", isRunning);
+        if (animator != null)
+        {
+            animator.SetBool("Run", isRunning);
+        }
 
         Flip();
 
@@ -75,7 +100,14 @@ public class Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        if (groundCheck == null) return false;
+        
+        // Draw a debug ray to visualize the ground check
+        Debug.DrawRay(groundCheck.position, Vector2.down * 0.2f, Color.red, 0.1f);
+        
+        // Check for ground
+        bool grounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return grounded;
     }
 
     private void Flip()
