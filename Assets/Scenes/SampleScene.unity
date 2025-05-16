@@ -2527,8 +2527,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2059234824}
   - component: {fileID: 2059234823}
-  - component: {fileID: 2059234822}
   - component: {fileID: 2059234827}
+  - component: {fileID: 2059234828}
   - component: {fileID: 2059234826}
   - component: {fileID: 2059234825}
   m_Layer: 0
@@ -2538,28 +2538,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &2059234822
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059234821}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 663ab46553ae618498ed7dbb07c5685c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &2059234823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2729,12 +2707,34 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 1794125678}
   - {fileID: 38138355}
-  animator: {fileID: 2059234822}
+  animator: {fileID: 2059234828}
   enemyName: Raptor yaaaw
   enemyDescription: A weak but annoying creature that attacks in groups.
   enemyIcon: {fileID: 0}
   raptorInfoPanel: {fileID: 0}
   raptorInfoText: {fileID: 0}
+--- !u!95 &2059234828
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059234821}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 998596c9b053b9d4bba25f8e379ea303, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &420979799463318890
 PrefabInstance:
   m_ObjectHideFlags: 0
