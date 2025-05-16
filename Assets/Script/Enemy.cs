@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -31,6 +32,13 @@ public class Enemy : MonoBehaviour
     public GameObject raptorInfoPanel;
     public TMP_Text raptorInfoText;
     
+    [Header("Attack")]
+    public int biteDamage = 1;         // Damage per bite (changed to int to match PlayerHealth)
+    public float biteRange = 1.5f;     // How close player must be to bite
+    public float biteCooldown = 1.0f;  // Time between bites
+    private float lastBiteTime = 0f;   // When we last bit the player
+    private bool isPerformingBite = false;
+
     // References
     private Rigidbody2D rb;
     private Transform player;
@@ -55,6 +63,26 @@ public class Enemy : MonoBehaviour
             
         if (groundCheck == null)
             Debug.LogWarning("Ground Check not assigned to Enemy!");
+        
+        // Verify animator parameters
+        if (animator != null)
+        {
+            // Check if "Bite" parameter exists
+            bool hasBiteParam = false;
+            foreach (AnimatorControllerParameter param in animator.parameters)
+            {
+                Debug.Log("Animator has parameter: " + param.name + " (Type: " + param.type + ")");
+                if (param.name == "Bite" && param.type == AnimatorControllerParameterType.Trigger)
+                {
+                    hasBiteParam = true;
+                }
+            }
+            
+            if (!hasBiteParam)
+            {
+                Debug.LogError("Animator is missing 'Bite' trigger parameter!");
+            }
+        }
     }
     
     void Update()
@@ -71,6 +99,19 @@ public class Enemy : MonoBehaviour
         
         // Update animation
         UpdateAnimation();
+        
+        // Force animation update if stuck
+        if (isPerformingBite && animator != null)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            // If we're still not in the bite animation after trying to bite
+            if (!stateInfo.IsName("Bite") && Time.time < lastBiteTime + 0.2f)
+            {
+                // Force it to play
+                animator.Play("Bite", 0, 0);
+                Debug.Log("Forcing bite animation in Update - animator was stuck!");
+            }
+        }
     }
     
     void FixedUpdate()
@@ -109,11 +150,34 @@ public class Enemy : MonoBehaviour
         if (player == null)
             return;
             
-        // Move towards player
-        MoveTowards(player.position);
+        // Calculate distance to player
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        
+        // If we're already biting, just ensure we stay still
+        if (isPerformingBite)
+        {
+            rb.linearVelocity = Vector2.zero; // CHANGE FROM linearVelocity
+            return;
+        }
+        
+        // If close enough to bite, stop and bite
+        if (distanceToPlayer <= biteRange)
+        {
+            // Stop moving when biting
+            rb.linearVelocity = Vector2.zero; // CHANGE FROM linearVelocity
+            
+            // Try to bite - this should always trigger if in range and facing player
+            TryBitePlayer(biteRange);
+            
+            Debug.Log($"Player in bite range: {distanceToPlayer} <= {biteRange}");
+        }
+        else
+        {
+            // Move towards player if not in bite range
+            MoveTowards(player.position);
+        }
         
         // Check if we should go back to patrolling
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer > detectionRange * 1.5f)
         {
             patrolMode = true;
@@ -131,7 +195,7 @@ public class Enemy : MonoBehaviour
         if (isGrounded)
         {
             // Set velocity
-            rb.linearVelocity = new Vector2(Mathf.Sign(xDirection) * moveSpeed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(Mathf.Sign(xDirection) * moveSpeed, rb.linearVelocity.y); // CHANGE FROM linearVelocity
             
             // Update facing direction
             if (xDirection > 0 && !faceRight || xDirection < 0 && faceRight)
@@ -195,6 +259,100 @@ public class Enemy : MonoBehaviour
         }
     }
     
+    public void TryBitePlayer(float range)
+    {
+        // Skip if player is null, on cooldown, or already biting
+        if (player == null || Time.time < lastBiteTime + biteCooldown || isPerformingBite)
+            return;
+        
+        // Calculate distance to player
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        
+        // Check if player is in range and we're facing them
+        bool isInRange = distanceToPlayer <= range;
+        bool isFacingPlayer = (player.position.x > transform.position.x && faceRight) || 
+                              (player.position.x < transform.position.x && !faceRight);
+        
+        // Debug output to check what's happening
+        Debug.Log($"Bite check: InRange={isInRange}, Facing={isFacingPlayer}, Distance={distanceToPlayer}, Range={range}");
+        
+        if (isInRange && isFacingPlayer)
+        {
+            isPerformingBite = true;
+            PerformBite();
+        }
+    }
+
+    private void PerformBite()
+    {
+        // Update last bite time
+        lastBiteTime = Time.time;
+        
+        // Force immediate animation
+        if (animator != null)
+        {
+            // Clear ALL animation triggers first (important fix)
+            animator.ResetTrigger("Bite");
+            
+            // Force immediate transition to bite animation
+            animator.Play("Bite", 0, 0);
+            
+            // Also set the trigger for normal animation flow
+            animator.SetTrigger("Bite");
+            
+            Debug.Log("FORCED bite animation to play immediately!");
+        }
+        
+        // Visual feedback
+        FlashAttack();
+        
+        // Apply damage immediately instead of waiting
+        if (player != null)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                // Apply damage right away
+                playerHealth.TakeDamage(biteDamage);
+                Debug.Log($"Immediate damage: {biteDamage} to player");
+            }
+        }
+        
+        // Reset bite state after a delay
+        StartCoroutine(ResetBiteState(0.5f));
+    }
+
+    private IEnumerator ResetBiteState(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isPerformingBite = false;
+    }
+
+    void FlashAttack()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            // Store original color
+            Color originalColor = sr.color;
+            
+            // Flash to attack color
+            sr.color = Color.red;
+            
+            // Return to original color after delay
+            StartCoroutine(ResetColorAfterDelay(sr, originalColor, 0.15f));
+        }
+    }
+
+    IEnumerator ResetColorAfterDelay(SpriteRenderer sr, Color originalColor, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (sr != null) // Check if object still exists
+        {
+            sr.color = originalColor;
+        }
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -225,6 +383,20 @@ public class Enemy : MonoBehaviour
                 Gizmos.DrawLine(pos, nextPos);
                 Gizmos.DrawSphere(pos, 0.2f);
             }
+        }
+        
+        // Draw bite range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, biteRange);
+    }
+
+    // Add this method to force animation updates
+    void OnAnimatorIK(int layerIndex)
+    {
+        // Force animation update if we're trying to bite
+        if (isPerformingBite && animator != null)
+        {
+            animator.Update(Time.deltaTime);
         }
     }
 }
