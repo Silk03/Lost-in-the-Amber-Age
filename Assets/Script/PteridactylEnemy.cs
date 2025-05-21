@@ -378,7 +378,7 @@ public class PteridactylEnemy : MonoBehaviour
         Debug.Log($"Pterodactyl taking damage: {damage}");
         
         // Stabilize to prevent spinning - FIXED: changed linearVelocity to velocity
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;  // FIXED THIS from linearVelocity
         rb.angularVelocity = 0f;
         transform.rotation = Quaternion.identity;
         
@@ -389,12 +389,64 @@ public class PteridactylEnemy : MonoBehaviour
         {
             Debug.Log("Pterodactyl died");
             
-            // Show popup
-            if (raptorInfoPanel != null && raptorInfoText != null)
+            // Use InfoPopup singleton if available
+            if (InfoPopup.Instance != null)
             {
-                raptorInfoPanel.SetActive(true);
-                raptorInfoText.text = enemyDescription;
-                StartCoroutine(CloseInfoPanel(3.0f));
+                Debug.Log("Using InfoPopup singleton");
+                InfoPopup.Instance.ShowEnemyInfo(enemyName, enemyDescription, enemyIcon);
+            }
+            else
+            {
+                // Find the info panel if not already assigned
+                if (raptorInfoPanel == null)
+                {
+                    Debug.Log("Looking for info panel");
+                    raptorInfoPanel = GameObject.FindWithTag("InfoPanel");
+                    
+                    if (raptorInfoPanel == null)
+                    {
+                        raptorInfoPanel = GameObject.Find("RaptorInfoPanel");
+                    }
+                    
+                    if (raptorInfoPanel == null)
+                    {
+                        var infoPanels = GameObject.FindObjectsOfType<Canvas>();
+                        foreach (var panel in infoPanels)
+                        {
+                            if (panel.name.Contains("Info") || panel.name.Contains("Raptor"))
+                            {
+                                raptorInfoPanel = panel.gameObject;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                // Show popup if found
+                if (raptorInfoPanel != null)
+                {
+                    Debug.Log("Found info panel, activating it");
+                    raptorInfoPanel.SetActive(true);
+                    
+                    // Find text component if needed
+                    if (raptorInfoText == null)
+                    {
+                        raptorInfoText = raptorInfoPanel.GetComponentInChildren<TMP_Text>();
+                    }
+                    
+                    // Set description text
+                    if (raptorInfoText != null)
+                    {
+                        raptorInfoText.text = enemyDescription;
+                    }
+                    
+                    // Close after delay
+                    StartCoroutine(CloseInfoPanel(3.0f));
+                }
+                else
+                {
+                    Debug.LogError("Could not find info panel in the scene!");
+                }
             }
             
             Destroy(gameObject, 0.1f);
@@ -418,3 +470,4 @@ public class PteridactylEnemy : MonoBehaviour
         }
     }
 }
+
