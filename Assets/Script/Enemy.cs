@@ -43,6 +43,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     
+    // Add this as a class variable
+    private Color _originalSpriteColor = Color.white;
+
     void Start()
     {
         hitpoints = maxhitpoints;
@@ -112,6 +115,8 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Forcing bite animation in Update - animator was stuck!");
             }
         }
+        
+        EnsureVisibility();
     }
     
     void FixedUpdate()
@@ -333,23 +338,33 @@ public class Enemy : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
-            // Store original color
+            // Store current color
             Color originalColor = sr.color;
             
-            // Flash to attack color
-            sr.color = Color.red;
+            // Set color to red but keep original alpha
+            sr.color = new Color(1f, 0f, 0f, 1f);
             
-            // Return to original color after delay
-            StartCoroutine(ResetColorAfterDelay(sr, originalColor, 0.15f));
+            // Reset color after delay using more direct approach
+            CancelInvoke("ResetSpriteColor");
+            Invoke("ResetSpriteColor", 0.15f);
+            
+            // Store original color for later reset
+            _originalSpriteColor = originalColor;
         }
     }
 
-    IEnumerator ResetColorAfterDelay(SpriteRenderer sr, Color originalColor, float delay)
+    // Add this as a simple method rather than a coroutine
+    void ResetSpriteColor()
     {
-        yield return new WaitForSeconds(delay);
-        if (sr != null) // Check if object still exists
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
         {
-            sr.color = originalColor;
+            // Ensure alpha is at least 1
+            Color resetColor = _originalSpriteColor;
+            resetColor.a = 1f;
+            
+            sr.color = resetColor;
+            Debug.Log($"Reset sprite color using Invoke method. Alpha now: {sr.color.a}");
         }
     }
     
@@ -397,6 +412,24 @@ public class Enemy : MonoBehaviour
         if (isPerformingBite && animator != null)
         {
             animator.Update(Time.deltaTime);
+        }
+    }
+
+    // Add this method to your Enemy class
+    public void EnsureVisibility()
+    {
+        // Find the sprite renderer
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            // If sprite is invisible or nearly invisible, reset color
+            if (sr.color.a < 0.5f)
+            {
+                Color fixedColor = sr.color;
+                fixedColor.a = 1.0f;
+                sr.color = fixedColor;
+                Debug.Log("Fixed invisible sprite!");
+            }
         }
     }
 }

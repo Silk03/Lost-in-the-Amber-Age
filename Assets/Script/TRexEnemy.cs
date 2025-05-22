@@ -223,36 +223,51 @@ public class TRexEnemy : MonoBehaviour
         transform.localScale = scale;
     }
     
-    // MODIFIED: Match Enemy.cs TakeHit exactly
+    // Copy this TakeHit method exactly as it is in Enemy.cs
     public void TakeHit(float damage)
     {
-        Debug.Log($"TRex taking damage: {damage}");
+        Debug.Log($"TRex TakeHit called with damage: {damage}");
         
-        // Stabilize to prevent spinning
-        rb.linearVelocity = Vector2.zero; 
-        rb.angularVelocity = 0f;
-        transform.rotation = Quaternion.identity;
+        // Flash red to provide visual feedback
+        StartCoroutine(FlashRed());
         
         hitpoints -= damage;
-        Debug.Log($"TRex health: {hitpoints}/{maxhitpoints}");
+        Debug.Log($"TRex health now: {hitpoints}/{maxhitpoints}");
         
         if (hitpoints <= 0)
         {
-            Debug.Log($"Enemy {enemyName} died, showing info popup");
+            Debug.Log($"Enemy {enemyName} died, attempting to show popup");
             
-            // Show popup - DIRECTLY copied from Enemy.cs
-            if (raptorInfoPanel != null && raptorInfoText != null)
+            if (TRexInfo.Instance != null)
             {
-                raptorInfoPanel.SetActive(true);
-                raptorInfoText.text = enemyDescription;
-                StartCoroutine(CloseInfoPanel(3.0f));
+                TRexInfo.Instance.ShowEnemyInfo(enemyName, enemyDescription, enemyIcon);
+            }
+            else
+            {
+                Debug.LogError("TRexInfo.Instance is null! Make sure TRexInfo is in the scene");
             }
             
             Destroy(gameObject, 0.1f);
         }
     }
+
+    private IEnumerator FlashRed()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Color originalColor = sr.color;
+            sr.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sr.color = originalColor;
+        }
+        else
+        {
+            yield return null;
+        }
+    }
     
-    // Match Enemy.cs exactly
+    // Match Enemy.cs TakeHit exactly
     public void TakeDamage(float damage)
     {
         TakeHit(damage);
@@ -336,63 +351,21 @@ public class TRexEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(biteDamage);
-            }
-            
-            rb.linearVelocity = Vector2.zero;
+            Debug.Log("Player hit! Triggering Game Over.");
+            var gameManager = FindObjectOfType<GameManager>();
+            if (gameManager != null)
+                gameManager.GameOver();
         }
         else if (collision.gameObject.CompareTag("Bullet") || 
-                collision.gameObject.name.ToLower().Contains("bullet"))
+                 collision.gameObject.name.ToLower().Contains("bullet"))
         {
-            Debug.Log("Bullet hit detected!");
+            Debug.Log("Bullet collision detected on TRex!");
             
-            // Apply default damage
+            // Apply damage ONCE
             TakeHit(1f);
-            
-            // Try to get specific damage from projectile
-            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-            if (projectile != null && projectile.damage > 0)
-            {
-                // Apply the specific projectile damage instead
-                TakeHit(projectile.damage);
-            }
-            
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            transform.rotation = Quaternion.identity;
             
             // Destroy bullet
             Destroy(collision.gameObject);
-        }
-    }
-    
-    // Match Enemy.cs trigger detection EXACTLY
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log($"TRex trigger with: {other.gameObject.name}, tag: {other.gameObject.tag}");
-        
-        if (other.CompareTag("Bullet") || 
-            other.name.ToLower().Contains("bullet") || 
-            other.name.ToLower().Contains("projectile"))
-        {
-            Debug.Log("Bullet trigger detected!");
-            
-            // Apply default damage
-            TakeHit(1f);
-            
-            // Try to get specific damage from projectile
-            Projectile projectile = other.GetComponent<Projectile>();
-            if (projectile != null && projectile.damage > 0)
-            {
-                // Apply the specific projectile damage instead
-                TakeHit(projectile.damage);
-            }
-            
-            // Destroy bullet
-            Destroy(other.gameObject);
         }
     }
 
