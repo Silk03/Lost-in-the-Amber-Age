@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0652c28f66045114798d53d0a05832a1
+guid: 4fb9697f0a0ecfc4ebf814e081d0dd58
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: pterodactyl (1)
     originalName: 
-    pivot: {x: 0.50980395, y: 0}
+    pivot: {x: 0.59836066, y: -0.034722224}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 26
-    spriteID: d0cf56b96fb19bd4db72415dfd4a9d11
+      width: 183
+      height: 144
+    spriteID: afce8958f9217ae459c754a9d8bc9c9b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,54 +144,24 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.50980395, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 38
-      width: 51
-      height: 25
-    spriteID: 715a4bd04acbb0b4db115bf3fc3e1077
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 38}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 99564979
-    name: raptor-idle (1)
+    guid: 1027207107
+    name: pterodactyl (1)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: pterodactyl (1)
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 36
-        y: 0
-        width: 51
-        height: 26
-      spriteId: d0cf56b96fb19bd4db72415dfd4a9d11
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 36
-        y: 0
-        width: 51
-        height: 25
-      spriteId: 715a4bd04acbb0b4db115bf3fc3e1077
+        x: 24
+        y: 5
+        width: 183
+        height: 144
+      spriteId: afce8958f9217ae459c754a9d8bc9c9b
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -210,5 +180,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 124, y: 64}
-  previousTextureSize: {x: 64, y: 128}
+  canvasSize: {x: 267, y: 150}
+  previousTextureSize: {x: 256, y: 256}
