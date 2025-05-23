@@ -63,19 +63,13 @@ public class Movement : MonoBehaviour
             
             if (grounded)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower); // CHANGED FROM linearVelocity
             }
         }
 
-        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f) // CHANGED FROM linearVelocity
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-        }
-
-        isRunning = horizontal != 0;
-        if (animator != null)
-        {
-            animator.SetBool("Run", isRunning);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f); // CHANGED FROM linearVelocity
         }
 
         Flip();
@@ -86,16 +80,26 @@ public class Movement : MonoBehaviour
             // Check if we have ammo manager and if we can use ammo
             if (ammoManager == null || ammoManager.UseAmmo())
             {
-                // Shoot only if we have ammo or no ammo manager
-                Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+                // Instantiate the projectile
+                Projectile projectile = Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+                
+                // Set the direction based on player facing
+                projectile.SetDirection(isFacingRight);
             }
-            // If no ammo, UseAmmo will play empty sound and return false
         }
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        // Apply movement
+        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y); // CHANGED FROM linearVelocity
+        
+        // Update animation based on actual velocity
+        isRunning = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
+        if (animator != null)
+        {
+            animator.SetBool("Run", isRunning);
+        }
     }
 
     private bool IsGrounded()
