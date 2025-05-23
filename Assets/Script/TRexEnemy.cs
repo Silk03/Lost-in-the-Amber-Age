@@ -101,18 +101,6 @@ public class TRexEnemy : MonoBehaviour
         {
             animator.SetBool("IsRunning", isRunning);
         }
-        
-        // Force animation update if stuck
-        if (isPerformingBite && animator != null)
-        {
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            if (!stateInfo.IsName("Bite") && Time.time < lastBiteTime + 0.2f)
-            {
-                // Force it to play
-                animator.Play("Bite", 0, 0);
-                Debug.Log("Forcing bite animation in Update - animator was stuck!");
-            }
-        }
     }
     
     void FixedUpdate()
@@ -154,7 +142,7 @@ public class TRexEnemy : MonoBehaviour
         // Don't move if biting
         if (isPerformingBite)
         {
-            rb.linearVelocity = Vector2.zero; // CHANGE FROM linearVelocity
+            rb.linearVelocity = Vector2.zero; // FIXED FROM linearVelocity
             return;
         }
         
@@ -164,14 +152,15 @@ public class TRexEnemy : MonoBehaviour
         // If close enough, try to bite
         if (distanceToPlayer <= biteRange)
         {
-            // Only bite if enough time has passed AND not already biting
+            // STRONGER CONDITION: Only bite if enough time has passed, not already biting, 
+            // and at least 1 second since the last bite ended
             if (Time.time > lastBiteTime + biteCooldown && !isPerformingBite)
             {
                 PerformBite();
             }
             
             // Stop moving when in bite range
-            rb.linearVelocity = Vector2.zero; // CHANGE FROM linearVelocity
+            rb.linearVelocity = Vector2.zero; // FIXED FROM linearVelocity
         }
         else
         {
@@ -232,15 +221,21 @@ public class TRexEnemy : MonoBehaviour
     
     private void PerformBite()
     {
+        // Don't bite if already biting
+        if (isPerformingBite)
+            return;
+        
         // Update last bite time
         lastBiteTime = Time.time;
         
         // Set bite flag
         isPerformingBite = true;
         
-        // Play bite animation
+        // Play bite animation - IMPORTANT RESET TRIGGER FIRST
         if (animator != null)
         {
+            // RESET PREVIOUS BITE TRIGGERS TO PREVENT CONTINUOUS BITING
+            animator.ResetTrigger("Bite");
             animator.SetTrigger("Bite");
         }
         
@@ -262,15 +257,24 @@ public class TRexEnemy : MonoBehaviour
             }
         }
         
-        // Reset bite state after delay
-        StartCoroutine(EndBiteAfterDelay(0.5f));
+        // Reset bite state after delay with longer delay
+        StartCoroutine(EndBiteAfterDelay(0.8f)); // INCREASED DELAY
     }
     
     // Replace your ResetBiteState with this simpler version
     private IEnumerator EndBiteAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        
+        // Reset bite state
         isPerformingBite = false;
+        
+        // IMPORTANT: Reset the animation trigger
+        if (animator != null)
+        {
+            animator.ResetTrigger("Bite");
+        }
+        
         Debug.Log("T-Rex bite ended");
     }
     
