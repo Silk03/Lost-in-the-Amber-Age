@@ -1318,8 +1318,7 @@ PrefabInstance:
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: enemyDescription
       value: Modern discoveries have revealed that Velociraptor was not the scaly,
-        lizard-like creature once imagined, but was covered in feathers, giving it
-        a bird-like appearance.
+        lizard-like creature once imagined, but was covered in feathers.
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -1396,9 +1395,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: enemyDescription
-      value: "Although it couldn't fly, the feathers may have helped with display,
-        thermoregulation, or agility. Its skull was long and narrow, with forward-facing
-        eyes that gave it good depth perception \u2014 a useful trait for a predator."
+      value: "Its skull was long and narrow, with forward-facing eyes that gave it
+        good depth perception \u2014 a useful trait for a predator."
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -1968,10 +1966,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -365853250141453618, guid: 4fb9697f0a0ecfc4ebf814e081d0dd58, type: 3}
     - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: maxhitpoints
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
       propertyPath: enemyDescription
-      value: Pterodactyl is the common name often used to describe flying reptiles
-        from the group Pterosaurs, but it specifically refers to members of the genus
-        Pterodactylus.
+      value: The common name often used to describe flying reptiles from the group
+        Pterosaurs, but it specifically refers to members of the genus Pterodactylus.
       objectReference: {fileID: 0}
     - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -2110,6 +2111,10 @@ PrefabInstance:
       propertyPath: 'healthIcons.Array.data[2]'
       value: 
       objectReference: {fileID: 1243216631}
+    - target: {fileID: 2232532103775003588, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: enemyBounceHeight
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2383837725425241271, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.1267996
@@ -2245,11 +2250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontSize
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontSizeBase
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2777,6 +2782,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2139285729024040012, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 588.9145
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139285729024040012, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 169.3484
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139285729024040012, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 104.457245
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139285729024040012, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -44.674194
+      objectReference: {fileID: 0}
     - target: {fileID: 2159230278549236884, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2861,13 +2882,89 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3231054509326932679, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 109.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231054509326932679, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 102.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231054509326932679, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 96.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231054509326932679, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623231904334889753, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 109.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623231904334889753, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 102.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623231904334889753, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 220.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623231904334889753, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119741548402471331, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119741548402471331, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_margin.z
+      value: 57.984207
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119741548402471331, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -336.2
+      value: 178.5
       objectReference: {fileID: 0}
     - target: {fileID: 6095512571188659246, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 134.9
+      value: -165.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035142643823362589, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 109.855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035142643823362589, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 102.3731
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035142643823362589, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035142643823362589, guid: 67b6685165c7f494fb631ad0cad87268, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3508,9 +3605,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: diveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
       propertyPath: enemyIcon
       value: 
       objectReference: {fileID: 7658727908703399133, guid: 481f16c42416da64287e860f5324acfc, type: 3}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: hitpoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: diveDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
+      propertyPath: maxhitpoints
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8629832934774254664, guid: 29dc0a82e99a4d644a57421d42e59e4f, type: 3}
       propertyPath: enemyDescription
       value: These creatures lived during the Late Jurassic period, about 150 million
