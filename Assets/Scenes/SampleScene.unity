@@ -1780,9 +1780,10 @@ MonoBehaviour:
   - {fileID: 739221315}
   - {fileID: 524955054}
   animator: {fileID: 1482597516}
-  enemyName: Raptor yaaaw
-  enemyDescription: A weak but annoying creature that attacks in groups.
-  enemyIcon: {fileID: 0}
+  enemyName: Velociraptor
+  enemyDescription: It was about the size of a turkey, with a long tail for balance,
+    sharp teeth, and a large curved claw on each foot, which it used to catch prey.
+  enemyIcon: {fileID: -5502509198756363809, guid: e6ce51612bd6f8e429c844b2a041ebd0, type: 3}
   raptorInfoPanel: {fileID: 0}
   raptorInfoText: {fileID: 0}
   biteDamage: 1
@@ -2285,11 +2286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854941155801634203, guid: c3cee107963b8764c93789febc248f34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.64
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 5854941155801634203, guid: c3cee107963b8764c93789febc248f34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.03
+      value: -3.15
       objectReference: {fileID: 0}
     - target: {fileID: 5854941155801634203, guid: c3cee107963b8764c93789febc248f34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3019,9 +3020,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5095385521299746123, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: displayTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5185431903422661859, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_Name
       value: UI Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 190773407855925740, guid: 17298ba4f35c30148bec438d70b5f8bd, type: 3}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309758272564389880, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615517751231311340, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.078431375
       objectReference: {fileID: 0}
     - target: {fileID: 7016417717030991483, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3063,6 +3108,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontSize
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3077,8 +3142,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyIcon
+      value: 
+      objectReference: {fileID: 3218374872228512125, guid: e6ce51612bd6f8e429c844b2a041ebd0, type: 3}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyName
+      value: Velociraptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: moveSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyDescription
+      value: A small, fast, and agile dinosaur that lived about 75 million years
+        ago during the Late Cretaceous period.
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
