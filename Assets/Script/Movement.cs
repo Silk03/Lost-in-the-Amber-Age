@@ -22,6 +22,10 @@ public class Movement : MonoBehaviour
     // Add reference to ammo manager
     private AmmoManager ammoManager;
 
+    [Header("Enemy Jump")]
+    [SerializeField] float enemyBounceHeight = 10f; // Higher than normal jump
+    [SerializeField] bool canJumpOnEnemies = true;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -95,7 +99,7 @@ public class Movement : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y); // CHANGED FROM linearVelocity
         
         // Update animation based on actual velocity
-        isRunning = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
+        isRunning = Mathf.Abs(rb.linearVelocity.x) > 0.1f; // CHANGED FROM linearVelocity
         if (animator != null)
         {
             animator.SetBool("Run", isRunning);
@@ -122,6 +126,65 @@ public class Movement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+        }
+    }
+
+    // This detects when the player collides with an enemy from above
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the collision is with an enemy
+        bool isEnemy = collision.gameObject.CompareTag("Enemy") || 
+                       collision.gameObject.GetComponent<Enemy>() != null ||
+                       collision.gameObject.GetComponent<TRexEnemy>() != null ||
+                       collision.gameObject.GetComponent<PteridactylEnemy>() != null;
+        
+        if (isEnemy && canJumpOnEnemies)
+        {
+            // Check if we're hitting the enemy from above
+            ContactPoint2D contact = collision.GetContact(0);
+            if (contact.normal.y > 0.5f) // We're hitting from above if normal points up
+            {
+                // Apply an upward force/velocity for the bounce
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, enemyBounceHeight);
+                
+                // Optional: Play sound
+                AudioSource audioSource = GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+                
+                // Optional: Deal damage to the enemy
+                DamageEnemyFromAbove(collision.gameObject);
+                
+                Debug.Log("Jumped on enemy: " + collision.gameObject.name);
+            }
+        }
+    }
+    
+    // Apply damage to the enemy when jumped on
+    private void DamageEnemyFromAbove(GameObject enemy)
+    {
+        // Try different enemy types
+        Enemy standardEnemy = enemy.GetComponent<Enemy>();
+        if (standardEnemy != null)
+        {
+            standardEnemy.TakeHit(1f); // Deal 1 damage from jump
+            return;
+        }
+        
+        TRexEnemy trex = enemy.GetComponent<TRexEnemy>();
+        if (trex != null)
+        {
+            trex.TakeHit(1f);
+            return;
+        }
+        
+        PteridactylEnemy ptero = enemy.GetComponent<PteridactylEnemy>();
+        if (ptero != null)
+        {
+            ptero.TakeHit(1f);
+            return;
         }
     }
 }

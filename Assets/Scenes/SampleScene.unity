@@ -1200,12 +1200,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyIcon
+      value: 
+      objectReference: {fileID: -1544039867633423660, guid: 917f3db3b4e2e484caf1cbd69183baab, type: 3}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyName
+      value: Velociraptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: detectionRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyDescription
+      value: Velociraptor had feathers and looked more like a bird than a reptile.
+        It likely hunted in packs and was one of the smarter dinosaurs.
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -1289,8 +1302,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyIcon
+      value: 
+      objectReference: {fileID: -4467618900502392807, guid: e6ce51612bd6f8e429c844b2a041ebd0, type: 3}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyName
+      value: Velociraptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: moveSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: enemyDescription
+      value: One of its most distinctive features was a large, curved claw on each
+        foot, which it likely used to slash at prey or hold it down while feeding.
       objectReference: {fileID: 0}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -2833,6 +2859,10 @@ PrefabInstance:
       propertyPath: 'healthIcons.Array.data[2]'
       value: 
       objectReference: {fileID: 81312171}
+    - target: {fileID: 2232532103775003588, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: enemyBounceHeight
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2383837725425241271, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.67
@@ -3057,6 +3087,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontColor.b
       value: 0.078431375
       objectReference: {fileID: 0}
@@ -3067,6 +3101,10 @@ PrefabInstance:
     - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontColor.r
       value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824203179171731466, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7016417717030991483, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3110,7 +3148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontSize
-      value: 21
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontColor.b
@@ -3126,7 +3164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7946955871297879100, guid: 5b79472a8ec6f1e4a93e0559b6579b32, type: 3}
       propertyPath: m_fontSizeBase
-      value: 21
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
