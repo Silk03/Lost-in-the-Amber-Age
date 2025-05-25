@@ -39,6 +39,15 @@ public class Enemy : MonoBehaviour
     private float lastBiteTime = 0f;   // When we last bit the player
     private bool isPerformingBite = false;
 
+
+    [Header("Audio")]
+    public AudioClip hitSound;       // Sound when enemy takes damage
+    public AudioClip deathSound;     // Sound when enemy dies
+    public AudioClip attackSound;    // Sound when enemy attacks player
+    [Range(0f, 1f)]
+    public float hitSoundVolume = 0.75f;
+    private AudioSource audioSource; // Reference to the audio source component
+
     // References
     private Rigidbody2D rb;
     private Transform player;
@@ -50,6 +59,14 @@ public class Enemy : MonoBehaviour
         // Get references
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
+        // Get or add audio source
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         
         // Find player
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -232,9 +249,25 @@ public class Enemy : MonoBehaviour
     
     public void TakeHit(float damage)
     {
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+        }
+        
         hitpoints -= damage;
+        
+        // Flash the sprite when hit
+        
         if (hitpoints <= 0)
         {
+            // Play death sound
+            if (audioSource != null && deathSound != null)
+            {
+                // Play death sound at position even after object is destroyed
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+            
             Debug.Log($"Enemy {enemyName} died, attempting to show popup");
             
             if (InfoPopup.Instance != null)

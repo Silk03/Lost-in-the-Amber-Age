@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -948,7 +952,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.85, y: 2.0500002}
+  m_Size: {x: 4.8800006, y: 2.0500002}
   m_EdgeRadius: 0
 --- !u!50 &1007868568
 Rigidbody2D:
@@ -1014,6 +1018,13 @@ MonoBehaviour:
   biteDamage: 1
   biteRange: 4.7
   biteCooldown: 1.5
+  roarSound: {fileID: 0}
+  biteSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 589775c280f99c7468521df11868d1f2, type: 3}
+  deathSound: {fileID: 0}
+  footstepSound: {fileID: 0}
+  roarVolume: 1
+  hitSoundVolume: 0.75
 --- !u!1001 &1125671258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1214,6 +1225,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 234867425442918678, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 66409d5bc3454a146926b7293b83f2ac, type: 3}
+    - target: {fileID: 234867425442918678, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
       propertyPath: 'healthIcons.Array.data[0]'
       value: 
       objectReference: {fileID: 2105542898}
@@ -1273,6 +1288,18 @@ PrefabInstance:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 77749187}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: emptySound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bf5f4e6132cae744bcbd1e00b9f27b7, type: 3}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c3a1e5ec52d89cb4692156576df02912, type: 3}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 594f9dbcf3b0df84b9bfa12db4a563f2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1560,6 +1587,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1653,7 +1684,7 @@ Transform:
   m_GameObject: {fileID: 2071920089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6441, y: -4.477, z: 0}
+  m_LocalPosition: {x: -2.13, y: -4.52, z: 0}
   m_LocalScale: {x: 2.2695246, y: 1.8883581, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2037,7 +2068,7 @@ Transform:
   m_GameObject: {fileID: 2130287406}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.66, y: -5.02, z: 0}
+  m_LocalPosition: {x: 22.02, y: -5.36, z: 0}
   m_LocalScale: {x: 2.3911052, y: 1.8400373, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2095,6 +2126,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

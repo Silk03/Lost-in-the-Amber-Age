@@ -20,15 +20,30 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playerModel; // Visual representation
     public MonoBehaviour[] scriptsToDisableOnDeath; // Movement scripts etc.
     
+    [Header("Audio")]
+    public AudioClip hitSound;        // Sound when player takes damage
+    public AudioClip deathSound;      // Sound when player dies
+    public AudioClip healSound;       // Sound when player gets healed
+    [Range(0f, 1f)]
+    public float hitSoundVolume = 0.75f;
+
     // Private variables
     private Vector3 startPosition;
     private bool isInvincible = false;
+    private AudioSource audioSource;  // Reference to the AudioSource component
     
     void Start()
     {
         startPosition = transform.position;
         currentHealth = maxHealth;
         UpdateHealthUI();
+        
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -56,6 +71,12 @@ public class PlayerHealth : MonoBehaviour
         
         // Apply damage
         currentHealth -= damageAmount;
+        
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+        }
         
         // Update UI
         UpdateHealthUI();
@@ -129,6 +150,12 @@ public class PlayerHealth : MonoBehaviour
         
         Debug.Log("Player died!");
         
+        // Play death sound
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
+        
         // Disable player controls/scripts
         foreach (MonoBehaviour script in scriptsToDisableOnDeath)
         {
@@ -178,8 +205,10 @@ public class PlayerHealth : MonoBehaviour
         // Update UI
         UpdateHealthUI();
         
-        // Optional: Play heal sound/effect
-        // if (healSound != null && audioSource != null)
-        //     audioSource.PlayOneShot(healSound);
+        // Play heal sound
+        if (healSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(healSound);
+        }
     }
 }

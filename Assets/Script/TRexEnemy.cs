@@ -39,6 +39,19 @@ public class TRexEnemy : MonoBehaviour
     private float lastBiteTime = 0f;   
     private bool isPerformingBite = false;
     
+    [Header("Audio")]
+    public AudioClip roarSound;      // Sound when T-Rex roars
+    public AudioClip biteSound;      // Sound when biting
+    public AudioClip hitSound;       // Sound when taking damage
+    public AudioClip deathSound;     // Sound when dying
+    public AudioClip footstepSound;  // Sound for footsteps while running
+    [Range(0f, 1f)]
+    public float roarVolume = 1.0f;
+    [Range(0f, 1f)]
+    public float hitSoundVolume = 0.75f;
+    private AudioSource audioSource;
+    private float nextFootstepTime = 0f;
+
     // References
     private Rigidbody2D rb;
     private Transform player;
@@ -50,6 +63,20 @@ public class TRexEnemy : MonoBehaviour
         // Get references
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
+        // Initialize audio
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+        
+        // Play initial roar to announce presence
+        if (audioSource != null && roarSound != null)
+        {
+            audioSource.PlayOneShot(roarSound, roarVolume);
+        }
         
         // Find player
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -94,6 +121,14 @@ public class TRexEnemy : MonoBehaviour
         else
         {
             ChasePlayer();
+        }
+        
+        // Play footstep sounds when running
+        if (isRunning && Time.time > nextFootstepTime)
+        {
+            PlayFootstepSound();
+            // Adjust timing based on move speed
+            nextFootstepTime = Time.time + (0.5f / (moveSpeed * 0.4f)); 
         }
         
         // Update animation
@@ -231,6 +266,12 @@ public class TRexEnemy : MonoBehaviour
         // Set bite flag
         isPerformingBite = true;
         
+        // Play bite sound
+        if (audioSource != null && biteSound != null)
+        {
+            audioSource.PlayOneShot(biteSound);
+        }
+        
         // Play bite animation - IMPORTANT RESET TRIGGER FIRST
         if (animator != null)
         {
@@ -341,6 +382,12 @@ public class TRexEnemy : MonoBehaviour
     
     public void TakeHit(float damage)
     {
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+        }
+        
         hitpoints -= damage;
         
         // Visual feedback
@@ -348,6 +395,12 @@ public class TRexEnemy : MonoBehaviour
         
         if (hitpoints <= 0)
         {
+            // Play death sound at location (won't be cut off when object is destroyed)
+            if (deathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, 1.0f);
+            }
+            
             Debug.Log($"Enemy {enemyName} died, attempting to show popup");
             
             var infoManager = FindFirstObjectByType<InfoPopup>();
@@ -384,6 +437,12 @@ public class TRexEnemy : MonoBehaviour
         {
             // When hit but not killed, consider becoming aggressive
             patrolMode = false;
+            
+            // Occasionally roar when taking damage
+            if (Random.value > 0.7f && roarSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(roarSound, roarVolume * 0.8f);
+            }
         }
     }
     
@@ -481,6 +540,25 @@ public class TRexEnemy : MonoBehaviour
                     Gizmos.DrawSphere(pos, 0.2f);
                 }
             }
+        }
+    }
+    
+    void PlaySound(AudioClip clip, float volumeScale)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volumeScale);
+        }
+    }
+    
+    void PlayFootstepSound()
+    {
+        if (audioSource != null && footstepSound != null && !audioSource.isPlaying)
+        {
+            // Vary the pitch slightly for more natural sound
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(footstepSound, 0.6f);
+            audioSource.pitch = 1.0f; // Reset pitch after playing
         }
     }
 }

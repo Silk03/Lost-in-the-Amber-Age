@@ -1204,6 +1204,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 589775c280f99c7468521df11868d1f2, type: 3}
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: enemyIcon
       value: 
       objectReference: {fileID: -1544039867633423660, guid: 917f3db3b4e2e484caf1cbd69183baab, type: 3}
@@ -1305,6 +1309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 589775c280f99c7468521df11868d1f2, type: 3}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: enemyIcon
       value: 
@@ -1823,6 +1831,10 @@ MonoBehaviour:
   biteDamage: 1
   biteRange: 2.2
   biteCooldown: 1
+  hitSound: {fileID: 8300000, guid: 589775c280f99c7468521df11868d1f2, type: 3}
+  deathSound: {fileID: 0}
+  attackSound: {fileID: 0}
+  hitSoundVolume: 0.75
 --- !u!212 &1482597518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2803,6 +2815,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 234867425442918678, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 66409d5bc3454a146926b7293b83f2ac, type: 3}
+    - target: {fileID: 234867425442918678, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 66409d5bc3454a146926b7293b83f2ac, type: 3}
+    - target: {fileID: 234867425442918678, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
       propertyPath: 'healthIcons.Array.data[0]'
       value: 
       objectReference: {fileID: 2007368434}
@@ -3238,6 +3258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 589775c280f99c7468521df11868d1f2, type: 3}
     - target: {fileID: 2989350501237939887, guid: b927b034e32b2c04e86a4324175d64f0, type: 3}
       propertyPath: enemyIcon
       value: 

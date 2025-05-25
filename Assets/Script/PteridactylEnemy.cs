@@ -40,9 +40,21 @@ public class PteridactylEnemy : MonoBehaviour
     public float diveSpeed = 5f;      // Speed of the dive attack
     private bool isPerformingDive = false;
     
+    [Header("Audio")]
+    public AudioClip wingFlapSound;    // Sound when flying/flapping
+    public AudioClip diveShriekSound;  // Sound when diving to attack
+    public AudioClip hitSound;         // Sound when taking damage
+    public AudioClip deathSound;       // Sound when dying
+    [Range(0f, 1f)]
+    public float wingFlapVolume = 0.4f;
+    [Range(0f, 1f)]
+    public float hitSoundVolume = 0.75f;
+    
     // References
     private Rigidbody2D rb;
     private Transform player;
+    private AudioSource audioSource;
+    private float nextWingFlapTime = 0f;
     
     void Start()
     {
@@ -51,6 +63,14 @@ public class PteridactylEnemy : MonoBehaviour
         // Get references
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
+        // Get or add audio source
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         
         // Find player
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -93,6 +113,13 @@ public class PteridactylEnemy : MonoBehaviour
         else
         {
             ChasePlayer();
+        }
+        
+        // Play wing flap sounds while flying
+        if (isFlying && !isDiving && !isPerformingDive && Time.time > nextWingFlapTime)
+        {
+            PlayWingFlapSound();
+            nextWingFlapTime = Time.time + 0.5f; // Flap every half second
         }
         
         // Update animation
@@ -221,6 +248,12 @@ public class PteridactylEnemy : MonoBehaviour
     
     public void TakeHit(float damage)
     {
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+        }
+        
         hitpoints -= damage;
         
         // Visual feedback
@@ -228,6 +261,13 @@ public class PteridactylEnemy : MonoBehaviour
         
         if (hitpoints <= 0)
         {
+            // Play death sound
+            if (audioSource != null && deathSound != null)
+            {
+                // Play at position so it finishes even if object is destroyed
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+            
             Debug.Log($"Enemy {enemyName} died, attempting to show popup");
             
             if (InfoPopup.Instance != null)
@@ -276,6 +316,12 @@ public class PteridactylEnemy : MonoBehaviour
         
         // Stop current movement
         rb.linearVelocity = Vector2.zero;
+        
+        // Play dive sound
+        if (audioSource != null && diveShriekSound != null)
+        {
+            audioSource.PlayOneShot(diveShriekSound);
+        }
         
         // Trigger dive animation
         if (animator != null)
@@ -461,6 +507,22 @@ public class PteridactylEnemy : MonoBehaviour
                     Gizmos.DrawSphere(pos, 0.2f);
                 }
             }
+        }
+    }
+    
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, (clip == wingFlapSound) ? wingFlapVolume : hitSoundVolume);
+        }
+    }
+    
+    void PlayWingFlapSound()
+    {
+        if (audioSource != null && wingFlapSound != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(wingFlapSound, wingFlapVolume);
         }
     }
 }
