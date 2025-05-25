@@ -863,6 +863,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1581,6 +1585,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2648,6 +2656,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2773,6 +2785,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5763547803366900782, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c8678c553dc6194389948db3b1e22f9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2850,6 +2866,18 @@ PrefabInstance:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 911176000}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: emptySound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bf5f4e6132cae744bcbd1e00b9f27b7, type: 3}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c3a1e5ec52d89cb4692156576df02912, type: 3}
+    - target: {fileID: 3522099528095896756, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 594f9dbcf3b0df84b9bfa12db4a563f2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
