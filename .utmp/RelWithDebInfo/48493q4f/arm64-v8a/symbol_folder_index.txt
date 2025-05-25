@@ -1,0 +1,1 @@
+D:\Unity\Lost in the Amber Age\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\48493q4f\obj\arm64-v8a
