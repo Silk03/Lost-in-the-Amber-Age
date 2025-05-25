@@ -19,12 +19,14 @@ public class Movement : MonoBehaviour
 
     [SerializeField] bool isRunning;
     
-    // Add reference to ammo manager
     private AmmoManager ammoManager;
 
     [Header("Enemy Jump")]
-    [SerializeField] float enemyBounceHeight = 10f; // Higher than normal jump
+    [SerializeField] float enemyBounceHeight = 10f;
     [SerializeField] bool canJumpOnEnemies = true;
+    
+    [Header("Mobile Controls")]
+    [SerializeField] bool usingMobileControls = true; // Toggle between mobile/keyboard
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,51 +60,95 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump"))
+        // If not using mobile controls, use keyboard input
+        if (!usingMobileControls)
         {
-            bool grounded = IsGrounded();
-            Debug.Log("Jump pressed, grounded: " + grounded);
+            horizontal = Input.GetAxisRaw("Horizontal");
             
-            if (grounded)
+            if (Input.GetButtonDown("Jump"))
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower); // CHANGED FROM linearVelocity
+                Jump();
             }
-        }
 
-        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f) // CHANGED FROM linearVelocity
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f); // CHANGED FROM linearVelocity
+            if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+            {
+                CutJump();
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                FireProjectile();
+            }
         }
 
         Flip();
-
-        // Modified shooting code to check for ammo
-        if (Input.GetButtonDown("Fire1"))
-        {
-            // Check if we have ammo manager and if we can use ammo
-            if (ammoManager == null || ammoManager.UseAmmo())
-            {
-                // Instantiate the projectile
-                Projectile projectile = Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
-                
-                // Set the direction based on player facing
-                projectile.SetDirection(isFacingRight);
-            }
-        }
     }
 
     private void FixedUpdate()
     {
         // Apply movement
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y); // CHANGED FROM linearVelocity
+        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
         
         // Update animation based on actual velocity
-        isRunning = Mathf.Abs(rb.linearVelocity.x) > 0.1f; // CHANGED FROM linearVelocity
+        isRunning = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
         if (animator != null)
         {
             animator.SetBool("Run", isRunning);
+        }
+    }
+    
+    // PUBLIC METHODS FOR MOBILE BUTTON CALLS
+    
+    // Call this from Left button
+    public void MoveLeft()
+    {
+        horizontal = -1f;
+    }
+    
+    // Call this from Right button
+    public void MoveRight()
+    {
+        horizontal = 1f;
+    }
+    
+    // Call this when movement buttons are released
+    public void StopMoving()
+    {
+        horizontal = 0f;
+    }
+    
+    // Call this from Jump button
+    public void Jump()
+    {
+        bool grounded = IsGrounded();
+        Debug.Log("Jump pressed, grounded: " + grounded);
+        
+        if (grounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+        }
+    }
+    
+    // Call this when jump button is released
+    public void CutJump()
+    {
+        if (rb.linearVelocity.y > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+        }
+    }
+    
+    // Call this from Fire button
+    public void FireProjectile()
+    {
+        // Check if we have ammo manager and if we can use ammo
+        if (ammoManager == null || ammoManager.UseAmmo())
+        {
+            // Instantiate the projectile
+            Projectile projectile = Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+            
+            // Set the direction based on player facing
+            projectile.SetDirection(isFacingRight);
         }
     }
 
