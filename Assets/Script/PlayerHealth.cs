@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip hitSound;        // Sound when player takes damage
     public AudioClip deathSound;      // Sound when player dies
     public AudioClip healSound;       // Sound when player gets healed
+    public AudioClip gameOverSound;   // Sound when game over screen appears
     [Range(0f, 1f)]
     public float hitSoundVolume = 0.75f;
 
@@ -140,6 +141,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
     
+    // Update your Die() method
     public void Die()
     {
         if (!isAlive) return; // Already dead
@@ -156,14 +158,18 @@ public class PlayerHealth : MonoBehaviour
             audioSource.PlayOneShot(deathSound);
         }
         
+        // IMMEDIATELY play game over sound - don't rely on coroutine
+        if (audioSource != null && gameOverSound != null)
+        {
+            // Play on a different audio source to avoid conflicts
+            AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position, 0.9f);
+        }
+        
         // Disable player controls/scripts
         foreach (MonoBehaviour script in scriptsToDisableOnDeath)
         {
             if (script != null) script.enabled = false;
         }
-        
-        // Optional: Play death animation, sound, particles etc.
-        // Animator.SetTrigger("Death");
         
         // Optional: Hide player model
         if (playerModel != null) playerModel.SetActive(false);
@@ -171,7 +177,7 @@ public class PlayerHealth : MonoBehaviour
         // Restart after delay
         Invoke("Respawn", respawnDelay);
     }
-    
+
     void Respawn()
     {
         // Option 1: Reload the current scene

@@ -1,12 +1,12 @@
 # ninja log v5
-34	390	7698828302660098	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	bde67f91dd38d339
-391	1106	7698828309531693	D:/Unity/Lost in the Amber Age/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/48493q4f/obj/arm64-v8a/libswappywrapper.so	99bc1c7aa728e08a
-21	1604	7698828314852294	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	7cfadd98ac775247
-17	1630	7698828315096185	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e858a7abe6ed295a
-1	1635	7698828315191926	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	3d314c600beae1e3
-26	1660	7698828315434971	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8a36fcf4eee2272f
-30	1734	7698828316205832	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	837130358e0c2834
-6	1786	7698828316764472	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f74f01649e0c6e47
-14	1970	7698828318569096	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	a79d008e587d1dfd
-10	2088	7698828319760640	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	47409e8c2420d21
-2088	2197	7698828320980112	D:/Unity/Lost in the Amber Age/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/48493q4f/obj/arm64-v8a/libgame.so	93d5d8b919ac2ca3
+50	628	7699629366372925	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	bde67f91dd38d339
+638	1197	7699629370436489	D:/Unity/Lost in the Amber Age/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/48493q4f/obj/arm64-v8a/libswappywrapper.so	99bc1c7aa728e08a
+31	1640	7699629376274537	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	7cfadd98ac775247
+1	1654	7699629376484128	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	3d314c600beae1e3
+35	1684	7699629376826288	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8a36fcf4eee2272f
+20	1721	7699629377286355	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e858a7abe6ed295a
+42	1748	7699629377581705	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	837130358e0c2834
+8	1860	7699629378674754	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f74f01649e0c6e47
+25	1989	7699629379968329	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	a79d008e587d1dfd
+15	2123	7699629381139117	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	47409e8c2420d21
+2123	2197	7699629382183528	D:/Unity/Lost in the Amber Age/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/48493q4f/obj/arm64-v8a/libgame.so	93d5d8b919ac2ca3
