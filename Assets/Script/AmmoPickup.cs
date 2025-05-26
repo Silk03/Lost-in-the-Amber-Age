@@ -19,6 +19,9 @@ public class AmmoPickup : MonoBehaviour
     {
         // Store the initial position for bobbing
         startPosition = transform.position;
+        
+        // Make sure we ignore collisions with bullets
+        IgnoreProjectileCollisions();
     }
     
     void Update()
@@ -31,9 +34,25 @@ public class AmmoPickup : MonoBehaviour
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
     
+    private void IgnoreProjectileCollisions()
+    {
+        // Get the collider on this object
+        Collider2D myCollider = GetComponent<Collider2D>();
+        
+        if (myCollider != null)
+        {
+            // Make sure we're set as a trigger
+            myCollider.isTrigger = true;
+            
+            // Option 1: Use layers for proper collision filtering
+            // Set this object to a layer that doesn't interact with projectiles
+            gameObject.layer = LayerMask.NameToLayer("Pickups");
+        }
+    }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if we collided with the player
+        // Check if we collided with the player - explicitly check for the player
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Player touched ammo pickup");
@@ -66,5 +85,6 @@ public class AmmoPickup : MonoBehaviour
                 Debug.LogWarning("Player has no AmmoManager component!");
             }
         }
+        // If it's not the player, ignore the collision completely
     }
 }

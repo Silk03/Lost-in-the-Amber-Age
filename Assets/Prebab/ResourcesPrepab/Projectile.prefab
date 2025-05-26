@@ -170,7 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba31729a282fe54b938fed1dac8efee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 8
+  damage: 1
+  maxRange: 7
+  showRangeGizmo: 1
 --- !u!50 &1229890867864431367
 Rigidbody2D:
   serializedVersion: 5

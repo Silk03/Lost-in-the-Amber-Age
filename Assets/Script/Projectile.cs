@@ -5,8 +5,19 @@ public class Projectile : MonoBehaviour
     public float speed = 4.5f;
     public float damage = 1f;
     
+    [Header("Range Settings")]
+    public float maxRange = 10f;     // Maximum distance the bullet can travel
+    public bool showRangeGizmo = true;  // For debugging in editor
+    
     // Add direction property - set this when instantiating the projectile
     private int direction = 1; // 1 for right, -1 for left
+    private Vector3 startPosition;   // Store initial position to track distance
+    
+    private void Start()
+    {
+        // Store the starting position for range calculation
+        startPosition = transform.position;
+    }
     
     // Add method to set direction from outside
     public void SetDirection(bool isFacingRight)
@@ -27,8 +38,23 @@ public class Projectile : MonoBehaviour
         // OPTION 1: Use transform.right only (preferred)
         transform.position += transform.right * Time.deltaTime * speed;
         
-        // OR OPTION 2: If that doesn't work, keep direction variable but don't rotate
-        // transform.position += Vector3.right * direction * Time.deltaTime * speed;
+        // Check if we've exceeded the maximum range
+        float distanceTraveled = Vector3.Distance(transform.position, startPosition);
+        if (distanceTraveled >= maxRange)
+        {
+            // Optional: Add a fade or small effect when bullet expires
+            Destroy(gameObject);
+        }
+    }
+
+    // Optional: Visualize the range in editor
+    private void OnDrawGizmosSelected()
+    {
+        if (showRangeGizmo)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, maxRange);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +86,12 @@ public class Projectile : MonoBehaviour
     // Also add trigger version for enemies using triggers
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Don't destroy pickups
+        if (other.CompareTag("Pickups") || other.gameObject.layer == LayerMask.NameToLayer("Pickups"))
+        {
+            return;
+        }
+        
         // Check for Enemy component
         var enemy = other.GetComponent<Enemy>();
         if (enemy)

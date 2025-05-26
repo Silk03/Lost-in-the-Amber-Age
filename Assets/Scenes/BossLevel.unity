@@ -230,6 +230,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickup_Apple
       objectReference: {fileID: 0}
+    - target: {fileID: 1242405432808358884, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242405432808358884, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: m_TagString
+      value: Pickups
+      objectReference: {fileID: 0}
     - target: {fileID: 2960093512796322119, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.0070999
@@ -279,6 +287,103 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+--- !u!1001 &256032327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 564829083752808430, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868779629491091506, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
+      propertyPath: m_Name
+      value: PauseMenu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a7682b676a771548be5fd1f94ed540b, type: 3}
 --- !u!1001 &454866145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -585,8 +690,36 @@ PrefabInstance:
       value: StopMoving
       objectReference: {fileID: 0}
     - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 55.820984
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 52.998993
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -64.899994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989425985053418423, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -153.42
+      value: 32.58
       objectReference: {fileID: 0}
     - target: {fileID: 3050300339090338208, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
       propertyPath: m_Name
@@ -710,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8240830501324409921, guid: 598949e00d75cce4586d0b60615687b2, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CutJump
+      value: StopMoving
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1479,6 +1612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 4088052822956335864, guid: c3cee107963b8764c93789febc248f34, type: 3}
+      propertyPath: m_TagString
+      value: Pickups
+      objectReference: {fileID: 0}
     - target: {fileID: 5854941155801634203, guid: c3cee107963b8764c93789febc248f34, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.99
@@ -1682,6 +1819,10 @@ PrefabInstance:
       propertyPath: 'healthIcons.Array.data[2]'
       value: 
       objectReference: {fileID: 2105542896}
+    - target: {fileID: 2232532103775003588, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4aae1770d80f44844a8f12d5721f7fed, type: 3}
     - target: {fileID: 2383837725425241271, guid: 3279f90d78296534d8c8157c38f72008, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.95
@@ -2000,6 +2141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickup_Apple (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1242405432808358884, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: m_TagString
+      value: Pickups
+      objectReference: {fileID: 0}
     - target: {fileID: 2960093512796322119, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.22028732
@@ -2061,6 +2206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoPickup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088052822956335864, guid: c3cee107963b8764c93789febc248f34, type: 3}
+      propertyPath: m_TagString
+      value: Pickups
+      objectReference: {fileID: 0}
     - target: {fileID: 5854941155801634203, guid: c3cee107963b8764c93789febc248f34, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.870465
@@ -2121,6 +2270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035229625}
   - component: {fileID: 2035229624}
+  - component: {fileID: 2035229626}
   m_Layer: 0
   m_Name: big float (1)
   m_TagString: Untagged
@@ -2171,7 +2321,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7587587951483303929, guid: c3909efd60851604dadab112c8ac0035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2198,6 +2348,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2035229626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035229623}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.5049999, y: 3.74}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.21921642, y: -3.8488374}
+    oldSize: {x: 5.36, y: 0.86}
+    newSize: {x: 5.36, y: 0.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.36, y: 0.86000013}
+  m_EdgeRadius: 0
 --- !u!1 &2071920089
 GameObject:
   m_ObjectHideFlags: 0
@@ -2626,6 +2822,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickup_Apple (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1242405432808358884, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242405432808358884, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
+      propertyPath: m_TagString
+      value: Pickups
+      objectReference: {fileID: 0}
     - target: {fileID: 2960093512796322119, guid: 3dc102025ef5e484ab3cd4126d0822c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3364525
@@ -2704,3 +2908,4 @@ SceneRoots:
   - {fileID: 454866145}
   - {fileID: 520535428}
   - {fileID: 585573873}
+  - {fileID: 256032327}

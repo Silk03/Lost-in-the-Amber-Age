@@ -27,6 +27,14 @@ public class Movement : MonoBehaviour
     
     [Header("Mobile Controls")]
     [SerializeField] bool usingMobileControls = true; // Toggle between mobile/keyboard
+
+    [Header("Audio")]
+    [SerializeField] AudioClip jumpSound;     // Sound played when jumping
+    [SerializeField] AudioClip landSound;     // Optional: Sound when landing
+    [Range(0f, 1f)]
+    [SerializeField] float jumpVolume = 0.7f; // Volume of jump sound
+    private AudioSource audioSource;          // Reference to audio source
+    private bool wasGrounded;                 // Track grounded state for landing sound
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +47,16 @@ public class Movement : MonoBehaviour
         {
             Debug.LogWarning("AmmoManager component not found on player. Unlimited ammo will be used.");
         }
+        
+        // Get or add audio source
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        // Initialize grounded state
+        wasGrounded = IsGrounded();
         
         // Verify components
         if (rb == null)
@@ -82,6 +100,15 @@ public class Movement : MonoBehaviour
         }
 
         Flip();
+
+        // Check for landing
+        bool isGrounded = IsGrounded();
+        if (isGrounded && !wasGrounded)
+        {
+            // Player just landed
+            PlayLandSound();
+        }
+        wasGrounded = isGrounded;
     }
 
     private void FixedUpdate()
@@ -95,6 +122,15 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("Run", isRunning);
         }
+
+        // Check grounded state for landing sound
+        if (IsGrounded() && !wasGrounded)
+        {
+            // Played when landing
+            PlaySound(landSound, 0.5f);
+        }
+        
+        wasGrounded = IsGrounded();
     }
     
     // PUBLIC METHODS FOR MOBILE BUTTON CALLS
@@ -126,6 +162,17 @@ public class Movement : MonoBehaviour
         if (grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            
+            // Play jump sound
+            PlayJumpSound();
+        }
+    }
+
+    private void PlayJumpSound()
+    {
+        if (audioSource != null && jumpSound != null)
+        {
+            audioSource.PlayOneShot(jumpSound, jumpVolume);
         }
     }
     
@@ -231,6 +278,27 @@ public class Movement : MonoBehaviour
         {
             ptero.TakeHit(1f);
             return;
+        }
+    }
+
+    // Play a sound with optional volume
+    private void PlaySound(AudioClip clip, float volumeScale)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip, volumeScale);
+        }
+    }
+
+    private void PlayLandSound()
+    {
+        if (audioSource != null && landSound != null)
+        {
+            // Only play landing sound if we fell a significant distance
+            if (rb.linearVelocity.y < -2f)
+            {
+                audioSource.PlayOneShot(landSound, jumpVolume * 0.8f);
+            }
         }
     }
 }
